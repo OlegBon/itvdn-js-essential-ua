@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+
+    <style>
+      #color-sample {
+        width: 250px;
+        height: 70px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="color-sample"></div>
+    <p>Колір: <b></b></p>
+
+    <script>
+      /*
+        Завдання:
+         Виправте сценарій таким чином, щоб крім зміни кольору div#color-sample у параграфі під div виводилося повідомлення
+         Колір: #000000
+         Де #000000 значення кольору фону елемента div#color-sample
+        */
+      //   function getRandomColor() {
+      //     var letters = "0123456789ABCDEF";
+      //     var color = "#";
+      //     for (var i = 0; i < 6; i++) {
+      //       color += letters[Math.floor(Math.random() * 16)];
+      //     }
+      //     return color;
+      //   }
+
+      //   let colorSampleDiv = document.querySelector("#color-sample");
+      //   colorSampleDiv.style.backgroundColor = getRandomColor();
+
+      function getRandomColor() {
+        let letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      let colorSampleDiv = document.querySelector("#color-sample");
+      colorSampleDiv.style.backgroundColor = getRandomColor();
+
+      let colorParagraph = document.querySelector("p b");
+      // Виводимо колір у параграф rgb конвертуємо у hex #
+      // Функція для конвертації rgb у hex
+      function rgbToHex(rgb) {
+        let result = rgb.match(/\d+/g);
+        return (
+          "#" +
+          result.map((x) => ("0" + parseInt(x).toString(16)).slice(-2)).join("")
+        );
+      }
+
+      colorParagraph.textContent = `${rgbToHex(
+        colorSampleDiv.style.backgroundColor
+      )}`;
+    </script>
+  </body>
+</html>

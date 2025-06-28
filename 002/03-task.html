@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+
+      td,
+      th {
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="statsTable">
+      <tr>
+        <th>Місяць</th>
+        <th>Відділ 1</th>
+        <th>Відділ 2</th>
+      </tr>
+      <tr>
+        <td>Січень</td>
+        <td>50</td>
+        <td>120</td>
+      </tr>
+      <tr>
+        <td>Лютий</td>
+        <td>60</td>
+        <td>140</td>
+      </tr>
+      <tr>
+        <td>Березень</td>
+        <td>125</td>
+        <td>115</td>
+      </tr>
+      <tr>
+        <td>Квітень</td>
+        <td>87</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>Березень</td>
+        <td>95</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>Червень</td>
+        <td>115</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>Липень</td>
+        <td>125</td>
+        <td>100</td>
+      </tr>
+    </table>
+
+    <div id="result"></div>
+
+    <script>
+      /*
+        Завдання:
+         Додайте рядок "Разом" для таблиці statsTable. Напишіть сценарій, яким виведіть у другий осередок цього рядка суму всіх числових значень другої колонки.
+         Виведіть у третій осередок цього рядка суму всіх числових значень із третьої колонки таблиці.
+         У div з id result виведіть повідомлення "Відділ 1 зробив більше продажів" або "Відділ 2 зробив більше продажів" на основі раніше обчислених значень у рядку "Разом".
+         Використовуйте будь-які методи, які були розглянуті на попередніх уроках.
+        */
+
+      let table = document.getElementById("statsTable"); // Отримуємо таблицю за ID
+      let rows = table.rows; // Отримуємо всі рядки таблиці
+      let sumDept1 = 0; // Змінна для суми відділу 1
+      let sumDept2 = 0; // Змінна для суми відділу 2
+
+      // Проходимо по всіх рядках таблиці, починаючи з другого (перший - заголовок)
+      // і обчислюємо суми для кожного відділу
+      for (let i = 1; i < rows.length; i++) {
+        sumDept1 += parseInt(rows[i].cells[1].textContent);
+        sumDept2 += parseInt(rows[i].cells[2].textContent);
+      }
+
+      // Додаємо новий рядок "Разом" до таблиці
+      let newRow = table.insertRow();
+      let newCell1 = newRow.insertCell(0);
+      newCell1.textContent = "Разом";
+      let newCell2 = newRow.insertCell(1);
+      newCell2.textContent = sumDept1;
+      let newCell3 = newRow.insertCell(2);
+      newCell3.textContent = sumDept2;
+
+      let result = document.getElementById("result"); // Отримуємо div для виведення результату
+
+      // Виводимо повідомлення в залежності від суми продажів
+      result.textContent =
+        sumDept1 > sumDept2
+          ? "Відділ 1 зробив більше продажів"
+          : "Відділ 2 зробив більше продажів";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 1</title>
+  </head>
+
+  <body>
+    <div>Вы ввели: <span></span></div>
+
+    <script>
+      /*
+        Завдання:
+         Виведіть значення змінної input в span розташований на сторінці
+        */
+      let input = prompt("Введіть повідомлення");
+
+      // Знаходимо елемент span в DOM
+      // Використовуємо метод querySelector для вибору першого span в div
+      let span = document.querySelector("div span");
+      // Виводимо значення змінної input в span
+      span.textContent = input;
+    </script>
+  </body>
+</html>
