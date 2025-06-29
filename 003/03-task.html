@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+
+      td,
+      th {
+        padding: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="statsTable">
+      <tr>
+        <td>Січень</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>Лютий</td>
+        <td>140</td>
+      </tr>
+      <tr>
+        <td>Березень</td>
+        <td>115</td>
+      </tr>
+      <tr>
+        <td>Квітень</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>Березень</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>Червень</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>Липень</td>
+        <td>100</td>
+      </tr>
+    </table>
+
+    <script>
+      /*
+        Завдання:
+         Напишіть сценарій, який видалить рядки таблиці, в яких у другій колонці знаходяться значення менше 100.
+         (У минулому уроці були розглянуті приклади, що показують як отримати доступ до батьківських елементів, оскільки
+         видаляти потрібно не комірку td, в якій знаходиться значення, а рядок tr, в якому розташована ця комірка).
+        */
+
+      let table = document.querySelector("table#statsTable"); // Отримуємо таблицю за ID statsTable
+      let rows = table.rows; // Отримуємо всі рядки таблиці
+      let rowDelete = []; // Масив для зберігання рядків, які потрібно видалити
+
+      // Збираємо рядки, які потрібно видалити
+      for (let i = 0; i < rows.length - 1; i++) {
+        if (rows[i].cells[1].textContent < 100) {
+          rowDelete.push(rows[i]);
+        }
+      }
+
+      // Видаляємо рядки, які потрібно видалити
+      for (let row of rowDelete) {
+        table.deleteRow(row.rowIndex);
+      }
+    </script>
+  </body>
+</html>

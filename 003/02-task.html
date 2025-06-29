@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 2</title>
+
+    <style>
+      div {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    Робочі дні
+    <div id="workDays"></div>
+
+    Вихідні дні
+    <div id="weekendDays"></div>
+
+    <script>
+      /*
+        Завдання:
+          Виведіть усі робочі дні тижня у div, використовуючи параграфи, який знаходиться після фрази "Робочі дні", виведіть усі вихідні дні тижня після фрази "Вихідні дні".
+          Можна внести в розмітку відповідні зміни, щоб попросити завдання пошуку необхідних div.
+          Параграфи створюйте за допомогою перебору масиву days в параграфі поміщайте значення властивості name
+        */
+
+      let days = [
+        { name: "Sunday", isWorkDay: false },
+        { name: "Monday", isWorkDay: true },
+        { name: "Tuesday", isWorkDay: true },
+        { name: "Wednesday", isWorkDay: true },
+        { name: "Thursday", isWorkDay: true },
+        { name: "Friday", isWorkDay: true },
+        { name: "Saturday", isWorkDay: false },
+      ];
+
+      let workDaysDiv = document.querySelector("div#workDays");
+      let weekendDaysDiv = document.querySelector("div#weekendDays");
+
+      for (const day of days) {
+        let p = document.createElement("p");
+        p.textContent = day.name;
+        if (day.isWorkDay) {
+          workDaysDiv.append(p);
+        } else {
+          weekendDaysDiv.append(p);
+        }
+      }
+    </script>
+  </body>
+</html>

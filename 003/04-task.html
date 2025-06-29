@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 4</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+
+      td,
+      th {
+        padding: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      /*
+        Завдання:
+         Створіть таблицю (table, tr, td) з урахуванням масиву об'єктів з ім'ям source. Кожен об'єкт – окремий рядок таблиці. Властивість month - значення першої колонок.
+         Властивість amont – значення для другої колонки.
+        */
+
+      let source = [
+        {
+          month: "Січень",
+          amount: 20,
+        },
+        {
+          month: "Лютий",
+          amount: 140,
+        },
+        {
+          month: "Березень",
+          amount: 115,
+        },
+        {
+          month: "Квітень",
+          amount: 100,
+        },
+        {
+          month: "Березень",
+          amount: 80,
+        },
+        {
+          month: "Червень",
+          amount: 90,
+        },
+        {
+          month: "Липень",
+          amount: 100,
+        },
+      ];
+
+      let table = document.createElement("table");
+      document.body.prepend(table);
+
+      for (let i = 0; i < source.length; i++) {
+        let tr = document.createElement("tr");
+        table.appendChild(tr);
+        let tdMonth = document.createElement("td");
+        tdMonth.textContent = source[i].month;
+        tr.appendChild(tdMonth);
+        let tdAmount = document.createElement("td");
+        tdAmount.textContent = source[i].amount;
+        tr.appendChild(tdAmount);
+      }
+    </script>
+  </body>
+</html>
