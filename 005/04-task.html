@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 04</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+
+      td,
+      th {
+        padding: 8px;
+      }
+
+      .attention {
+        background-color: lightcoral;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="statsTable">
+      <tr>
+        <td>Січень</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>Лютий</td>
+        <td>140</td>
+      </tr>
+      <tr>
+        <td>Березень</td>
+        <td>115</td>
+      </tr>
+      <tr>
+        <td>Квітень</td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>Березень</td>
+        <td>80</td>
+      </tr>
+      <tr>
+        <td>Червень</td>
+        <td>90</td>
+      </tr>
+      <tr>
+        <td>Липень</td>
+        <td>100</td>
+      </tr>
+    </table>
+
+    <script>
+      /*
+        Завдання:
+         Напишіть сценарій, який додасть клас уваги рядкам таблиці, в яких у другій колонці знаходяться значення менше 100.
+        */
+
+      //   let table = document.getElementById("statsTable");
+      //   let rows = table.querySelectorAll("tr");
+
+      //   //   for (let i = 0; i < rows.length; i++) {
+      //   //     if (rows[i].cells[1].textContent < 100) {
+      //   //       rows[i].classList.add("attention");
+      //   //     }
+      //   //   }
+
+      //   rows.forEach((row) => {
+      //     if (parseInt(row.cells[1].textContent) < 100) {
+      //       row.classList.add("attention");
+      //     }
+      //   });
+
+      let tdSecondColumn = document.querySelectorAll(
+        "#statsTable td:nth-child(2)"
+      );
+
+      tdSecondColumn.forEach((td) => {
+        if (parseInt(td.textContent) < 100) {
+          td.parentElement.classList.add("attention");
+        }
+      });
+    </script>
+  </body>
+</html>
