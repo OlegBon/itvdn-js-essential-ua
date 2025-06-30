@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 04</title>
+  </head>
+
+  <body>
+    <div class="task" data-status="completed">Купити молоко</div>
+
+    <div class="task" data-status="expired">Вигуляти собаку</div>
+
+    <div class="task">Вивчити JavaScript</div>
+
+    <div class="task">Врятувати світ</div>
+
+    <script>
+      /*
+        Завдання:
+         Для елементів із атрибутом data-status="expired" зробіть рамку червоного кольору. Для елементів із атрибутом data-status="completed" виведіть рамку зеленого кольору.
+        */
+
+      // Отримуємо всі елементи з класом task
+      let tasks = document.querySelectorAll(".task");
+
+      // for (const task of tasks) {
+      //   if (task.dataset.status === "completed") {
+      //     task.style.border = "2px solid green";
+      //   } else if (task.dataset.status === "expired") {
+      //     task.style.border = "2px solid red";
+      //   }
+      // }
+
+      // Універсальна функція для встановлення рамки
+      for (const task of tasks) {
+        changeStatusBorder(task);
+      }
+
+      function changeStatusBorder(task) {
+        let borderColor;
+        switch (task.dataset.status) {
+          case "completed":
+            borderColor = "green";
+            break;
+          case "expired":
+            borderColor = "red";
+            break;
+          default:
+            borderColor = "white"; // Якщо статус не визначений, встановлюємо білу рамку
+            break;
+        }
+        task.style.border = "2px solid " + borderColor;
+      }
+    </script>
+  </body>
+</html>
