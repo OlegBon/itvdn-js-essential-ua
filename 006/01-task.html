@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 01</title>
+  </head>
+
+  <body>
+    <button id="testBtn">Test Button</button>
+    <button id="testBtn2" onclick="alert('Hello world 2')">Test Button</button>
+
+    <script>
+      /*
+        Завдання:
+        Додайте для кнопки testBtn обробник на подію click.
+        Обробник повинен виводити на екран повідомлення Hello world.
+        Додайте обробник трьома різними способами.
+        */
+
+      let testBtn = document.getElementById("testBtn");
+
+      // 1 - Використання властивості onclick
+      testBtn.onclick = btnClick;
+
+      function btnClick() {
+        alert("Hello world");
+      }
+
+      // 2 - Використання методу addEventListener
+      testBtn.addEventListener("click", () => {
+        alert("Hello world");
+      });
+    </script>
+  </body>
+</html>
