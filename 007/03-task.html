@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 03</title>
+    <style>
+      div {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        margin: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+      /*
+        Завдання:
+        Реалізуйте сценарій, який при натисканні на клавіші 1, 2 або 3 на клавіатурі, додаватиме рамку
+        червоний колір на відповідний div. Якщо затиснуті клавіші Ctrl+A, то червона рамка додається відразу
+        для всіх div
+        */
+
+      document.addEventListener("keydown", function (e) {
+        let divs = document.querySelectorAll("div");
+        let index = parseInt(e.key) - 1; // Перетворюємо натиснуту клавішу в індекс (1, 2, 3)
+
+        // Перевіряємо, чи натиснута клавіша є числом від 1 до 3
+        // Якщо Ctrl+A, то додаємо рамку для всіх div
+        // Якщо індекс в межах кількості div, то додаємо рамку на відповідний div
+        if (e.ctrlKey && e.key.toLowerCase() === "a") {
+          divs.forEach((div) => {
+            div.style.border = "2px solid red";
+          });
+        } else if (index >= 0 && index < divs.length) {
+          // Перевіряємо, чи індекс в межах кількості div
+          divs[index].style.border = "2px solid red";
+        }
+      });
+    </script>
+  </body>
+</html>
