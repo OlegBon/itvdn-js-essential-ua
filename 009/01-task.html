@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 01</title>
+  </head>
+
+  <body>
+    <template id="template">
+      <div>
+        Назва книги: <span id="titlePlaceholder"></span> <br />
+        Автор: <span id="authorPlaceholder"></span>
+        <hr />
+      </div>
+    </template>
+
+    <script>
+      /*
+        Завдання:
+        Не використовуючи сторонні бібліотеки, виведіть вміст масиву books на екран, використовуючи шаблон #template.
+        У шаблоні елемент #titlePlaceholder використовуйте для відображення властивості title з об'єкта, що знаходиться у масиві books.
+        У шаблоні елемент #authorPlaceholder використовуйте для відображення властивості author з об'єкта, що знаходиться в масиві books.
+        */
+      let books = [
+        {
+          title: "JavaScript. Повне керівництво 7-е видання",
+          author: "Девід Фленаган",
+        },
+        {
+          title: "JavaScript. Шаблони",
+          author: "Стоян Стефанов",
+        },
+        {
+          title: "Секрети JavaScript ніндзя",
+          author: "Секрети JavaScript ніндзя",
+        },
+      ];
+
+      // Отримуємо шаблон
+      let template = document.querySelector("#template");
+
+      // Отримуємо контейнер для вставки
+      let container = document.createElement("div");
+      container.classList.add("container"); // Додаємо клас для стилізації
+
+      // Проходимося по масиву books
+      for (const book of books) {
+        // Клонуємо шаблон
+        let clone = template.content.cloneNode(true);
+
+        // Заповнюємо дані в шаблоні
+        clone.querySelector("#titlePlaceholder").textContent = book.title;
+        clone.querySelector("#authorPlaceholder").textContent = book.author;
+
+        // Додаємо клон до контейнера
+        container.append(clone);
+      }
+
+      // Додаємо контейнер
+      let scriptBlock = document.querySelector("script");
+      scriptBlock.parentNode.insertBefore(container, scriptBlock); // Вставляємо контейнер перед скриптом
+      //   document.body.append(container);
+    </script>
+  </body>
+</html>

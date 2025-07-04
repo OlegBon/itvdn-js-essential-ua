@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 02</title>
+  </head>
+
+  <body>
+    <template id="template">
+      <div>
+        <!-- Назва книги: <span id="titlePlaceholder"></span> <br />
+        Автор: <span id="authorPlaceholder"></span> -->
+        Назва книги: {{title}} <br />
+        Автор: {{author}}</span>
+        <hr />
+      </div>
+    </template>
+
+    <script src="mustache.min.js"></script>
+    <script>
+      /*
+        Завдання:
+        Використовуючи бібліотеку mustache.js, виведіть вміст масиву books на екран, використовуючи шаблон #template.
+        Виконайте рефакторинг (зміни структури коду без зміни результату) шаблону #template таким чином, щоб
+        назва книги та ім'я автора виводилися без використання span з унікальними id, а через інструменти mustache.js
+        */
+      let books = [
+        {
+          title: "JavaScript. Повне керівництво 7-е видання",
+          author: "Девід Фленаган",
+        },
+        {
+          title: "JavaScript. Шаблони",
+          author: "Стоян Стефанов",
+        },
+        {
+          title: "Секрети JavaScript ніндзя",
+          author: "Секрети JavaScript ніндзя",
+        },
+      ];
+
+      // Отримуємо шаблон
+      let template = document.querySelector("#template");
+
+      // Отримуємо контейнер для вставки
+      let container = document.createElement("div");
+      container.classList.add("container"); // Додаємо клас для стилізації
+
+        // Проходимося по масиву books
+      for (const book of books) {
+        // Клонуємо шаблон
+        let clone = template.innerHTML;
+
+        // Заповнюємо дані в шаблоні за допомогою mustache.js
+        let rendered = Mustache.render(clone, book);
+
+        // Додаємо клон до контейнера
+        container.innerHTML += rendered;
+      }
+
+        // Додаємо контейнер до тіла документа
+    //   document.body.append(container); // Вставляємо контейнер в кінець тіла документа
+
+        //  Альтернативний спосіб вставки контейнера перед скриптом
+        let scriptBlock = document.querySelector("script");
+        scriptBlock.parentNode.insertBefore(container, scriptBlock);
+    </script>
+  </body>
+</html>
