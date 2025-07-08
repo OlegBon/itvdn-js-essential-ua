@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 03</title>
+
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .car-info {
+        display: inline-block;
+        margin: 10px 0 10px 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="car-info" id="placeholder1"></div>
+    <div class="car-info" id="placeholder2"></div>
+    <div class="car-info" id="placeholder3"></div>
+
+    <script>
+      /*
+        Завдання:
+        Замініть конструктор на клас.
+        Всі властивості класу Car поміняйте на закриті поля та для кожного поля, додайте getter та setter за потребою.
+        Для поля html передбачте можливість лише набуття значення, організуйте код таким чином, щоб не допустити
+        редагування значення якості HTML безпосередньо.
+        */
+
+      //   function Car(image, manufacturer) {
+      //     this.image = image;
+      //     this.manufacturer = manufacturer;
+      //     this.html = `<img src="images/${this.image}" /><br />Виробник: ${this.manufacturer}<br />`;
+      //   }
+
+      class Car {
+        #image;
+        #manufacturer;
+        #html;
+
+        constructor(image, manufacturer) {
+          this.#image = image;
+          this.#manufacturer = manufacturer;
+          this.#html = `<img src="images/${this.#image}" /><br />Виробник: ${
+            this.#manufacturer
+          }<br />`;
+        }
+
+        get image() {
+          return this.#image;
+        }
+
+        get manufacturer() {
+          return this.#manufacturer;
+        }
+
+        get html() {
+          return this.#html;
+        }
+
+        set html(value) {
+          // Prevent direct modification of HTML
+          console.warn("Direct modification of HTML is not allowed.");
+        }
+
+        set image(value) {
+          if (typeof value === "string" && value.trim() !== "") {
+            this.#image = value;
+            this.#html = `<img src="images/${this.#image}" /><br />Виробник: ${
+              this.#manufacturer
+            }<br />`;
+          } else {
+            console.warn("Invalid image value.");
+          }
+        }
+
+        set manufacturer(value) {
+          if (typeof value === "string" && value.trim() !== "") {
+            this.#manufacturer = value;
+            this.#html = `<img src="images/${this.#image}" /><br />Виробник: ${
+              this.#manufacturer
+            }<br />`;
+          } else {
+            console.warn("Invalid manufacturer value.");
+          }
+        }
+      }
+
+      let car1 = new Car("audi-a6-250.jpg", "Audi");
+      let car2 = new Car("jaguar-x-type-250.jpg", "Jaguar");
+      let car3 = new Car("porsche-carrera-911-250.jpg", "Porsce");
+
+      let placeholder1 = document.querySelector("#placeholder1");
+      let placeholder2 = document.querySelector("#placeholder2");
+      let placeholder3 = document.querySelector("#placeholder3");
+
+      placeholder1.innerHTML = car1.html;
+      placeholder2.innerHTML = car2.html;
+      placeholder3.innerHTML = car3.html;
+    </script>
+  </body>
+</html>
