@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 02</title>
+  </head>
+
+  <body>
+    <script>
+      /*
+        Завдання:
+         Зробіть так, щоб клас Truck успадковувався від Car Car.
+         Перевизначить метод move, у класі Truck -
+         Якщо у вантажівку завантажено менше 500 кг вантажу, має спрацьовувати реалізація методу з класу Car
+         Якщо у вантажівку завантажено понад 500 кг, має виводитися повідомлення "Вантажівка рухається зі швидкістю 50 км/год."
+        */
+
+      class Car {
+        move() {
+          console.log("Машина рухається зі швидкістю 80 км/год.");
+        }
+      }
+
+      //   class Truck {
+      //     weight;
+      //     loadCargo(weight) {
+      //       if (weight > 1000) {
+      //         console.log(
+      //           "Ця вантажівка не може перевозити більше 1000 кг вантажу"
+      //         );
+      //       } else {
+      //         this.weight = weight;
+      //         console.log(`У вантажівку завантажено ${this.weight}кг.`);
+      //       }
+      //     }
+      //   }
+
+      //   let v1 = new Car();
+
+      class Truck extends Car {
+        weight;
+        loadCargo(weight) {
+          if (weight > 1000) {
+            console.log(
+              "Ця вантажівка не може перевозити більше 1000 кг вантажу"
+            );
+          } else {
+            this.weight = weight;
+            console.log(`У вантажівку завантажено ${this.weight}кг.`);
+          }
+        }
+      }
+
+      let v1 = new Truck();
+
+      v1.move();
+
+      let v2 = new Truck();
+      v2.loadCargo(1500);
+      v2.loadCargo(990);
+      v2.move();
+
+      let v3 = new Truck();
+      v3.loadCargo(100);
+      v3.move();
+    </script>
+  </body>
+</html>
