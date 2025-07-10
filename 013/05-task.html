@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 05</title>
+  </head>
+
+  <body>
+    <script>
+      /*
+         Завдання:
+         Напишіть сценарії "Гра 'Вгадай число'". Суть гри – вгадати за меншу кількість спроб число, яке загадав сценарій.
+         Щоразу, коли гравець намагається вгадати число, сценарій виводить підказку - менше чи більше було загадано сценарієм.
+         Сценарій загадує число лише один раз на початку гри, і це число не змінюється до завершення гри.
+         Після завершення гри виведіть користувачеві інформацію про те, з якої спроби вгадано значення та скільки було витрачено на це час.
+
+         для генерації випадкового числа використовуйте наступний код:
+         let randomValue = Math.floor(Math.random() * 101); // випадкове значення від 0 до 100 буде записано в змінну randomValue
+        
+         Приклад гри:
+         Сценарій: я загадав випадкове значення від 0 до 100
+         Користувач: 50
+         Сценарій: я загадав значення більше, ніж 50
+         Користувач: 75
+         Сценарій: я загадав значення менше, ніж 75
+         Користувач: 62
+         Сценарій: я загадав значення менше, ніж 62
+         Користувач: 56
+         Сценарій: Правильно! Загадане значення 56. Ви вгадали з 4-ї спроби за 10 сек.
+         */
+
+      let randomValue = Math.floor(Math.random() * 101); // випадкове значення від 0 до 100 буде записано в змінну randomValue
+      console.log("Загадане число:", randomValue);
+      let attempts = 0;
+      let time = 0;
+      let startTime = Date.now();
+
+      while (true) {
+        // let userValue = +prompt("Введіть число від 0 до 100");
+        let input = prompt("Введіть число від 0 до 100");
+        if (input === null) {
+          alert("Гру скасовано.");
+          break;
+        }
+        let userValue = +input;
+        if (isNaN(userValue) || userValue < 0 || userValue > 100) {
+          alert("Введіть число від 0 до 100!");
+          continue;
+        }
+        attempts++;
+        if (userValue < randomValue) {
+          alert("Загадане значення більше, ніж " + userValue);
+        } else if (userValue > randomValue) {
+          alert("Загадане значення менше, ніж " + userValue);
+        } else {
+          let endTime = Date.now();
+          time = Math.floor((endTime - startTime) / 1000);
+          alert(
+            "Правильно! Загадане значення " +
+              randomValue +
+              ". Ви вгадали з " +
+              attempts +
+              "-ї спроби за " +
+              time +
+              " сек."
+          );
+          break;
+        }
+      }
+    </script>
+  </body>
+</html>
