@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 01</title>
+  </head>
+
+  <body>
+    <form>
+      <input type="radio" name="color" value="#ffd800" /> Orange
+      <input type="radio" name="color" value="#5ade54" /> Green
+      <input id="saveButton" type="button" value="Зберегти" />
+    </form>
+
+    <script>
+      /*
+            Завдання:
+            Додайте можливість зберегти вибраний колір сторінки у cookies терміном на 1 тиждень.
+            Додайте відновлення вибраного кольору з cookies, якщо вони є, після завантаження документа.
+        */
+
+      //   document
+      //     .querySelector("#saveButton")
+      //     .addEventListener("click", function () {
+      //       const form = document.forms[0];
+      //       let selectedColor = form.color.value;
+      //       document.body.style.backgroundColor = selectedColor;
+      //     });
+
+      document.querySelector("#saveButton").addEventListener("click", () => {
+        const form = document.forms[0];
+        const selectedColor = form.color.value;
+
+        // Зміна фону
+        document.body.style.backgroundColor = selectedColor;
+
+        // Збереження в cookie на 1 тиждень
+        document.cookie = `color=${selectedColor}; max-age=604800`; // 60 * 60 * 24 * 7
+      });
+
+      // Відновлення вибраного кольору з cookies після завантаження
+      window.addEventListener("DOMContentLoaded", () => {
+        let colorCookie = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("color="));
+
+        if (colorCookie) {
+          let savedColor = colorCookie.split("=")[1];
+          document.body.style.backgroundColor = savedColor;
+
+          // Позначити вибраний радіо-кнопкою
+          let radio = document.querySelector(
+            `input[type='radio'][value='${savedColor}']`
+          );
+          if (radio) radio.checked = true;
+        }
+      });
+
+      // // Варіант 2
+
+      // window.addEventListener("DOMContentLoaded", () => {
+      //   let color = getCookie("color");
+      //   if (color) {
+      //     document.body.style.backgroundColor = color;
+
+      //     let radio = document.querySelector(
+      //       `input[type='radio'][value='${color}']`
+      //     );
+      //     if (radio) radio.checked = true;
+      //   }
+      // });
+
+      // document.querySelector("#saveButton").addEventListener("click", () => {
+      //   const form = document.forms[0];
+      //   const selectedColor = form.color.value;
+
+      //   document.body.style.backgroundColor = selectedColor;
+      //   setCookie("color", selectedColor, 7 * 24 * 60 * 60);
+      // });
+
+      // function setCookie(name, value, maxAge) {
+      //   document.cookie = `${name}=${encodeURIComponent(
+      //     value
+      //   )}; max-age=${maxAge}`;
+      // }
+
+      // function getCookie(name) {
+      //   let match = document.cookie.match(
+      //     new RegExp("(^| )" + name + "=([^;]+)")
+      //   );
+      //   return match ? decodeURIComponent(match[2]) : null;
+      // }
+    </script>
+  </body>
+</html>
