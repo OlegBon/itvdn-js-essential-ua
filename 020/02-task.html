@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 02</title>
+  </head>
+
+  <body>
+    <form>
+      <label for="title">Title</label>
+      <input type="text" name="title" id="title" />
+      <br />
+      <label for="body">Body</label>
+      <textarea name="body" id="body"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      /*
+        Завдання:
+        Напишіть сценарій, який оновлюватиме сутність post з властивостями
+        id: 1,
+        title: 'foo',
+        body: 'bar',
+        userId: 1,
+
+        Створіть форму з полем введення для значення властивості title та полем введення для значення властивості body
+
+        Значення для властивостей title та body отримаєте від користувача
+        Значення id та userId повинні залишитися рівними 1 і виводити їх у формі не потрібно.
+        При завантаженні сценарію заповніть форму даними отриманими під час обробки GET запиту на https://jsonplaceholder.typicode.com/posts/1
+
+        адреса для надсилання запиту
+        https://jsonplaceholder.typicode.com/posts/1
+
+        для оновлення сутності скористайтесь PUT запитом https://jsonplaceholder.typicode.com/posts/1. Опрацюйте відповідь
+        та виведіть інформацію про помилку або успішно завершену операцію.
+        */
+
+      let url = "https://jsonplaceholder.typicode.com/posts/1";
+
+      let title = document.querySelector("#title");
+      let body = document.querySelector("#body");
+
+      let form = document.querySelector("form");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: 1,
+            title: title.value,
+            body: body.value,
+            userId: 1,
+          }),
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error("Error: " + response.status);
+            return response.json();
+          })
+          .then((json) => {
+            alert("Success");
+            title.value = json.title;
+            body.value = json.body;
+          })
+          .catch((error) => {
+            alert(error.message);
+          });
+      });
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => {
+          title.value = json.title;
+          body.value = json.body;
+        });
+    </script>
+  </body>
+</html>
